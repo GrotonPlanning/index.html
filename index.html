@@ -1,0 +1,185 @@
+<style>
+.viewer-wrapper {
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.viewer {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 50px;
+  padding: 40px;
+  height: 80vh;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+.board {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 65vh;
+  max-width: 90vw;
+}
+
+.board-inner img {
+  max-height: 65vh;
+  max-width: 90vw;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.board-title {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* Buttons */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nav.left { left: 10px; }
+.nav.right { right: 10px; }
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.viewer::-webkit-scrollbar {
+  display: none;
+}
+</style>
+
+<div class="viewer-wrapper">
+
+  <button class="nav left" id="prevBtn">❮</button>
+  <button class="nav right" id="nextBtn">❯</button>
+
+  <div class="viewer" id="viewer">
+
+    <!-- Boards -->
+    <div class="board">
+      <div class="board-inner">
+        <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/1e13c5f1ed294317b89fddd414b29b21/data">
+      </div>
+      <div class="board-title">Opportunity Site Map</div>
+    </div>
+
+    <div class="board">
+      <div class="board-inner">
+        <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/11ff9fc5750a4e79a847ba7a34fe0f0a/data">
+      </div>
+      <div class="board-title">Site 1 Existing Conditions</div>
+    </div>
+
+    <div class="board">
+      <div class="board-inner">
+        <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/2c84f7492d6d4b2da3b4dd88900dc3fb/data">
+      </div>
+      <div class="board-title">Site 1</div>
+    </div>
+
+    <!-- Add the rest exactly the same way -->
+
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <img id="modalImg">
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const viewer = document.getElementById("viewer");
+  const boards = viewer.querySelectorAll(".board");
+  let currentIndex = 0;
+
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modalImg");
+
+  function scrollToBoard(index) {
+    if (index < 0) index = 0;
+    if (index >= boards.length) index = boards.length - 1;
+
+    boards[index].scrollIntoView({
+      behavior: "smooth",
+      inline: "center"
+    });
+
+    currentIndex = index;
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", function () {
+    scrollToBoard(currentIndex + 1);
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", function () {
+    scrollToBoard(currentIndex - 1);
+  });
+
+  // Click to zoom
+  boards.forEach(board => {
+    board.addEventListener("click", function () {
+      const img = this.querySelector("img").src;
+      modalImg.src = img;
+      modal.classList.add("active");
+    });
+  });
+
+  // Close modal
+  modal.addEventListener("click", function () {
+    modal.classList.remove("active");
+  });
+
+  // Keyboard support
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") scrollToBoard(currentIndex + 1);
+    if (e.key === "ArrowLeft") scrollToBoard(currentIndex - 1);
+    if (e.key === "Escape") modal.classList.remove("active");
+  });
+
+});
+</script>
