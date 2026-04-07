@@ -4,6 +4,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* === Horizontal Gallery === */
 .viewer {
   display: flex;
   overflow-x: auto;
@@ -13,6 +14,11 @@
   height: 80vh;
   align-items: center;
   scroll-behavior: smooth;
+}
+
+/* Hide scrollbar */
+.viewer::-webkit-scrollbar {
+  display: none;
 }
 
 .board {
@@ -28,6 +34,7 @@
   align-items: center;
 }
 
+/* Image container */
 .board-inner {
   display: flex;
   align-items: center;
@@ -36,6 +43,7 @@
   max-width: 90vw;
 }
 
+/* Handles portrait + landscape */
 .board-inner img {
   max-height: 65vh;
   max-width: 90vw;
@@ -50,7 +58,7 @@
   font-size: 15px;
 }
 
-/* Buttons */
+/* === Navigation Buttons === */
 .nav {
   position: absolute;
   top: 50%;
@@ -67,7 +75,7 @@
 .nav.left { left: 10px; }
 .nav.right { right: 10px; }
 
-/* Modal */
+/* === Modal === */
 .modal {
   display: none;
   position: fixed;
@@ -86,10 +94,6 @@
 .modal.active {
   display: flex;
 }
-
-.viewer::-webkit-scrollbar {
-  display: none;
-}
 </style>
 
 <div class="viewer-wrapper">
@@ -100,7 +104,7 @@
   <div class="viewer" id="viewer">
 
     <!-- Board 1 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/1e13c5f1ed294317b89fddd414b29b21/data">
       </div>
@@ -108,7 +112,7 @@
     </div>
 
     <!-- Board 2 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/11ff9fc5750a4e79a847ba7a34fe0f0a/data">
       </div>
@@ -116,7 +120,7 @@
     </div>
 
     <!-- Board 3 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/2c84f7492d6d4b2da3b4dd88900dc3fb/data">
       </div>
@@ -124,7 +128,7 @@
     </div>
 
     <!-- Board 4 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/1639002820a3403487f3f04874305a9d/data">
       </div>
@@ -132,7 +136,7 @@
     </div>
 
     <!-- Board 5 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/d423ff05f7c9473b8e780cd63c4ebbd4/data">
       </div>
@@ -140,7 +144,7 @@
     </div>
 
     <!-- Board 6 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/6673056dc7784692aed43d0f7f9181f8/data">
       </div>
@@ -148,7 +152,7 @@
     </div>
 
     <!-- Board 7 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/9ee925ac4b694e5c9c4191c9c17711ae/data">
       </div>
@@ -156,7 +160,7 @@
     </div>
 
     <!-- Board 8 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/52bd1582a0c14ee883e96d5966c1d550/data">
       </div>
@@ -164,7 +168,7 @@
     </div>
 
     <!-- Board 9 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/eb24a53f92bb40e1809e92c4f58f69fe/data">
       </div>
@@ -172,7 +176,7 @@
     </div>
 
     <!-- Board 10 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/a1a8807801244cc19413166805778070/data">
       </div>
@@ -180,7 +184,7 @@
     </div>
 
     <!-- Board 11 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/01b7f3219e9b498492911d84947f9def/data">
       </div>
@@ -188,7 +192,7 @@
     </div>
 
     <!-- Board 12 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/799e2b51ec9f4b77a7169216fdcf58b5/data">
       </div>
@@ -196,7 +200,7 @@
     </div>
 
     <!-- Board 13 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/6b20556988df47c8a13008aea232ba43/data">
       </div>
@@ -204,7 +208,7 @@
     </div>
 
     <!-- Board 14 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/102ff51eaf9449afa0ff3163ddd27859/data">
       </div>
@@ -212,7 +216,7 @@
     </div>
 
     <!-- Board 15 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/231f2fe16ed740de8c31f1ab1c02f70e/data">
       </div>
@@ -220,7 +224,7 @@
     </div>
 
     <!-- Board 16 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/dba669e71b6c474388d01c4e545fdab9/data">
       </div>
@@ -228,15 +232,12 @@
     </div>
 
     <!-- Board 17 -->
-    <div class="board" onclick="openModal(this)">
+    <div class="board">
       <div class="board-inner">
         <img src="https://grotongis.maps.arcgis.com/sharing/rest/content/items/823fa65bb42f4afcaa9a478ab9f74c47/data">
       </div>
       <div class="board-title">Site 8</div>
     </div>
-
-
-    <!-- Add the rest exactly the same way -->
 
   </div>
 </div>
@@ -250,49 +251,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const viewer = document.getElementById("viewer");
   const boards = viewer.querySelectorAll(".board");
+
   let currentIndex = 0;
 
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modalImg");
 
-  function scrollToBoard(index) {
+  function goToBoard(index) {
     if (index < 0) index = 0;
     if (index >= boards.length) index = boards.length - 1;
 
     boards[index].scrollIntoView({
       behavior: "smooth",
-      inline: "center"
+      inline: "center",
+      block: "nearest"
     });
 
     currentIndex = index;
   }
 
-  document.getElementById("nextBtn").addEventListener("click", function () {
-    scrollToBoard(currentIndex + 1);
+  document.getElementById("nextBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    goToBoard(currentIndex + 1);
   });
 
-  document.getElementById("prevBtn").addEventListener("click", function () {
-    scrollToBoard(currentIndex - 1);
+  document.getElementById("prevBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    goToBoard(currentIndex - 1);
   });
 
-  // Click to zoom
-  boards.forEach(board => {
+  boards.forEach((board, index) => {
     board.addEventListener("click", function () {
-      const img = this.querySelector("img").src;
+      const img = board.querySelector("img").src;
       modalImg.src = img;
       modal.classList.add("active");
+      currentIndex = index;
     });
   });
 
-  // Close modal
   modal.addEventListener("click", function () {
     modal.classList.remove("active");
   });
 
-  // Keyboard support
   document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") scrollToBoard(currentIndex + 1);
-    if (e.key === "ArrowLeft") scrollToBoard(currentIndex - 1);
+    if (e.key === "ArrowRight") goToBoard(currentIndex + 1);
+    if (e.key === "ArrowLeft") goToBoard(currentIndex - 1);
     if (e.key === "Escape") modal.classList.remove("active");
   });
 
